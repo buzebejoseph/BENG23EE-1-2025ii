@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f2f2f2; display: flex; flex-direction: column; align-items: center; padding: 50px 0;">
+
+<!-- Register Form -->
+<div style="background: white; padding: 30px; border-radius: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 300px; margin-bottom: 30px;">
+    <h2 style="text-align: center;">Register</h2>
+    <form id="registerForm">
+        <input type="number" id="username" placeholder="Username" required
+               style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box;">
+
+        <input type="email" id="email" placeholder="Email" required
+               style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box;">
+
+        <input type="password" id="password" placeholder="Password" required
+               style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box;">
+
+        <button type="submit"
+                style="width: 100%; padding: 10px; margin: 8px 0; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+            Register
+        </button>
+
+        <p id="message" style="margin-top: 10px; color: grey; text-align: center;"></p>
+    </form>
+</div>
+
+<!-- Sample Data Table -->
+<div style="width: 600px;">
+    <h3 style="text-align: center;">Sample Registered Users</h3>
+    <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <thead>
+        <tr style="background-color: #4CAF50; color: red;">
+            <th style="padding: 10px; border: 1px solid #ddd;">Username</th>
+            <th style="padding:12px;border:2px solid #ddd;">residence</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;">alice_01</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">alice@example.com</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;">bob_the_builder</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">bob@builder.com</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;">charlie_x</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">charlie@mail.net</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- JavaScript -->
+<script>
+    class RegisterForm {
+      constructor(username, email, password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+      }
+
+      isValid() {
+        return this.validateUsername() && this.validateEmail() && this.validatePassword();
+      }
+
+      validateUsername() {
+        return this.username.length >= 3;
+      }
+
+      validateEmail() {
+        return this.email.includes('@') && this.email.includes('.');
+      }
+
+      validatePassword() {
+        return this.password.length >= 6;
+      }
+
+      register() {
+        if (this.isValid()) {
+          return "✅ Registration successful!";
+        } else {
+          return "❌ Invalid input. Please check your details.";
+        }
+      }
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const form = new RegisterForm(username, email, password);
+      document.getElementById("message").textContent = form.register();
+    });
+</script>
+
+</body>
+</html>
